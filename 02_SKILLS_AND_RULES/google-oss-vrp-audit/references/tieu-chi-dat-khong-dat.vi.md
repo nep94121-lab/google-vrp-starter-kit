@@ -20,6 +20,7 @@ Mỗi verdict phải gắn với **một tiêu chí có tên, phạm vi và bằ
 | Định danh tệp | Hash tự tính trên tệp đã đọc | Manifest không khớp phiên bản được mô tả | Chỉ có đường dẫn hoặc hash do người gửi kể |
 | Đồng bộ gói | Bản ngoài/trong đúng phiên bản, các khác biệt có chủ đích được giải thích | README/patch/bằng chứng của nhiều phiên bản bị trộn | Chưa đọc được ZIP |
 | Nguồn và citation | Đúng repo/commit/file, code/comment khớp và vùng dòng dẫn đúng đoạn | Trích sai, sửa comment không ghi rõ, sai commit hoặc số dòng | Không lấy được nguồn hay mapping mơ hồ |
+| Chống trùng lặp (`Canonical 1469`) | Lỗi nằm ở bản vá mới merge (<14 ngày), hoặc trong logic code Python/JS/TS/Bash phụ trợ, hoặc chuỗi đa tầng ở repo ngách | Lỗi chỉ là mẫu YAML bề mặt cũ (`workflow_run`/`pull_request_target` cơ bản) trên repo lớn mà `zizmor` quét thấy ngay | Chưa kiểm tra lịch sử commit/PR gần nhất của file bị ảnh hưởng |
 | Attacker control | Vai trò và input được chứng minh | Input bị producer ghi đè trước khi consumer đọc | Chưa có producer hoặc chưa biết artifact nào tới consumer |
 | Ranh giới bảo vệ | Các gate/quyền liên quan được xét đủ trong phạm vi | Claim bỏ qua gate thật đang ngăn đường tấn công | Gate/IAM/private configuration chưa xác minh |
 | Kết quả trái phép | Chứng minh được hành động ngoài quyền hoặc nêu đúng điều kiện chưa biết | Chỉ là chức năng thiết kế, hoặc bằng chứng phản bác kết quả tuyên bố | Chưa có observable outcome và điều kiện chưa giải quyết |
@@ -35,6 +36,7 @@ LF, emoji, tên mục, số file, số link và scanner marker là quan sát QA.
 ## Khi nào kết luận sẵn sàng gửi?
 
 - Không còn FAIL làm sai câu chuyện kỹ thuật, chứng cứ hoặc lựa chọn chương trình.
+- Vượt qua bộ lọc **Chống trùng lặp (`Canonical 1469`)**: không nộp các lỗi cấu hình `.yml` bề mặt đã tồn tại lâu ngày trên các repo phổ biến vốn đã bị các máy quét tự động (`zizmor`, `actionlint`) báo cáo trước.
 - Các claim chính đủ bằng chứng; điều kiện chưa biết đã được nêu rõ và không phải tiền đề bị thiếu của kết luận chính.
 - Những giới hạn còn lại được liệt kê, tệp cuối đã nhận diện, và nếu có bản vá thì mức kiểm chứng của nó được nói đúng.
 - Nếu tác động chính còn UNVERIFIED: kết luận **cần bổ sung bằng chứng** hoặc **chỉ sẵn sàng ở phạm vi claim đã thu hẹp**, nêu chính xác phạm vi. Không ép đạt bằng cách đổi nhãn thành PASS.
@@ -43,4 +45,7 @@ LF, emoji, tên mục, số file, số link và scanner marker là quan sát QA.
 
 ## Thứ tự ưu tiên
 
-Ưu tiên đường tấn công có bằng chứng, ít giả định, tác động ngoài quyền rõ và route hiện hành phù hợp. Sau đó đến claim có điều kiện được nêu trung thực. Tách hardening hoặc hành vi đúng thiết kế để không đẩy chúng lên trước chỉ vì từ khóa RCE/secret/critical.
+Ưu tiên:
+1. Lỗi bypass bản vá bảo mật mới merge gần đây (`Incomplete Security Fix`) hoặc lỗi logic trong mã nguồn phụ trợ CI/CD (`Python/JS/TS/Go`) có bằng chứng thực thi rõ ràng, ít giả định, tác động ngoài quyền rõ và route hiện hành phù hợp.
+2. Sau đó đến claim có điều kiện được nêu trung thực.
+3. Loại bỏ sớm các lỗi cấu hình YAML bề mặt dễ trùng lặp (`canonical: 1469`) hoặc hành vi đúng thiết kế.
