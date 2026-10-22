@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google OSS VRP Audit"
+  short_description: "Review OSS VRP claims, evidence packages and patches"
+  default_prompt: "Use $google-oss-vrp-audit to audit these Google OSS VRP reports, verify the attached evidence and identify concrete revisions before submission."

@@ -1,0 +1,91 @@
+{
+  "created_at_utc": "2026-10-22T08:57:55.610612+00:00",
+  "scope": "Unsigned integrity manifest; excludes this manifest itself",
+  "files": [
+    {
+      "path": "PROMPT_BAN_GIAO.md",
+      "bytes": 3809,
+      "sha256": "63779136c2f7a8a41ca92ccabe74c6b0c2a9fb19874510167600f74c5cb902d3"
+    },
+    {
+      "path": "README_VI.md",
+      "bytes": 4863,
+      "sha256": "a86270b521659b5f506e218f3c21040d8fbb3489cd501d1384e91938f9110cfa"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/agents/openai.yaml",
+      "bytes": 291,
+      "sha256": "c291192c441de06723663e6f42a8bfa73ed8979a88117e957bb92a08ff96f467"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/assets/CLAIM_EVIDENCE.csv",
+      "bytes": 264,
+      "sha256": "4711af5e32c588e6d395a6f653e9b171833f222754912f87556512ca776bda4a"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/assets/REVIEW_TEMPLATE.md",
+      "bytes": 3158,
+      "sha256": "23e961c0ca5f0f67e7c874b29efcb657eb04dd69c39644399af903cda40aeff2"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/cac-truong-hop.vi.md",
+      "bytes": 4944,
+      "sha256": "a1eaf4cac53d1dd4556527f07bfe0a3730f967cbee929465d763000733d90be4"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/cong-cu-va-gioi-han.vi.md",
+      "bytes": 4077,
+      "sha256": "2328eb1744ae3f34a2c9678783e01a2bd195da3712a2ef3e52b26bbdfbd1d1d6"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/google-rules-snapshot.vi.md",
+      "bytes": 3103,
+      "sha256": "f690def9fa9356e23522dfc0f8fb0b36de05ff61e053eb1417374771998cf394"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/policy-and-evidence.md",
+      "bytes": 7304,
+      "sha256": "20c1397477d414515954f296283001f0d59d474e0e0ce3825c0304e0bb5ce451"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/policy-sources.json",
+      "bytes": 1998,
+      "sha256": "669992d5c1c1840447698f64697d2edf8dce3ddb42d75b77e3cec072994b9203"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/quy-trinh-kiem-tra.vi.md",
+      "bytes": 7285,
+      "sha256": "08ad694ef3806d5c6f0325d69c5862fbdebc81967031dd89e6e84442dfba7327"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/references/tieu-chi-dat-khong-dat.vi.md",
+      "bytes": 5256,
+      "sha256": "a6e99f1af54dd04d573b523bff56744e32bc9124f6c0858454acc1049fb9aa2d"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/scripts/audit_packages.py",
+      "bytes": 11200,
+      "sha256": "05c0a7acf79661079bef5e6e9acb0add183dee854b04f6dc6bd580722686b248"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/scripts/self_test.py",
+      "bytes": 3366,
+      "sha256": "40cf191335337010515518f606b0145a5eb95fa9e4ab74622e87fff17813215c"
+    },
+    {
+      "path": "skills/google-oss-vrp-audit/SKILL.md",
+      "bytes": 4977,
+      "sha256": "c781fe3f80f22d568e9e6542fbf06caf5b1d61caee754b7d13c9dafc0c8186e5"
+    },
+    {
+      "path": "tools/verify_bundle.py",
+      "bytes": 1829,
+      "sha256": "54000e814a3724846774d4eb2f31890c63a5a121c51bc522bad8ee3c800619e4"
+    },
+    {
+      "path": "validation/RESULTS.json",
+      "bytes": 2511,
+      "sha256": "f3964f5c33a9001aa26f3808ff815e1987c0c0b5306f3c2f29ecf4c561a58288"
+    }
+  ]
+}

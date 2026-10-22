@@ -1,0 +1,59 @@
+{
+  "checked_at_utc": "2026-10-22T08:57:55.564459+00:00",
+  "scope": "Portable handoff tools and documentation, not vulnerability reports or Google acceptance",
+  "checks": [
+    {
+      "check": "Skill structure/frontmatter",
+      "status": "PASS",
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "Offline helper regression suite",
+      "status": "PASS",
+      "tests": 5,
+      "byte_guard_fixture_cases": 13,
+      "output": "test_byte_and_newline_disagreements_are_observable (__main__.PackageAuditTests.test_byte_and_newline_disagreements_are_observable) ... ok\ntest_immutable_source_mapping_is_not_silently_ambiguous (__main__.PackageAuditTests.test_immutable_source_mapping_is_not_silently_ambiguous) ... ok\ntest_patch_applies_only_to_matching_old_content (__main__.PackageAuditTests.test_patch_applies_only_to_matching_old_content) ... ok\ntest_raw_byte_contract_examples (__main__.PackageAuditTests.test_raw_byte_contract_examples) ... ok\ntest_zip_rejects_traversal_and_duplicate_names (__main__.PackageAuditTests.test_zip_rejects_traversal_and_duplicate_names) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.331s\n\nOK"
+    },
+    {
+      "check": "Python source compilation",
+      "status": "PASS",
+      "scripts": 3
+    },
+    {
+      "check": "Internal Markdown links",
+      "status": "PASS",
+      "broken_links": []
+    },
+    {
+      "check": "No machine-specific private inputs in reusable bundle",
+      "status": "PASS",
+      "hits": []
+    },
+    {
+      "check": "CLI synthetic matching package",
+      "status": "PASS",
+      "scope": "Synthetic fixture only; no upstream calls"
+    },
+    {
+      "check": "CLI mismatch is visible despite process exit zero",
+      "status": "PASS"
+    },
+    {
+      "check": "Integrity verifier detects modified bytes",
+      "status": "PASS"
+    },
+    {
+      "check": "Official policy provenance",
+      "status": "PASS",
+      "sources": 3,
+      "snapshot_date": "2026-10-22",
+      "scope": "Full fetched responses retained in builder scratch; bundle ships summaries, URLs and response hashes"
+    },
+    {
+      "check": "Packaged helper identical to installed audited helper",
+      "status": "PASS",
+      "sha256": "05c0a7acf79661079bef5e6e9acb0add183dee854b04f6dc6bd580722686b248"
+    }
+  ],
+  "note": "Existing skill repackaged with Vietnamese handoff references; no new independent agent evaluation claimed. No real report submissions or upstream workflow runs."
+}

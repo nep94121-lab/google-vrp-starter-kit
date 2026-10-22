@@ -1,0 +1,52 @@
+{
+  "program": "Google Open Source Software VRP (OSS VRP) - Supply Chain",
+  "rules_url": "https://bughunters.google.com/about/rules/google-friends/google-open-source-software-vulnerability-reward-program-rules",
+  "reward_tiers": {
+    "flagship": {
+      "max_reward_usd": 31337,
+      "min_reward_usd": 3133.7,
+      "organizations": [
+        "golang",
+        "angular",
+        "flutter",
+        "protocolbuffers",
+        "bazelbuild",
+        "kubernetes",
+        "tensorflow",
+        "dart-lang",
+        "fuchsia",
+        "google",
+        "googleapis",
+        "google-gemini",
+        "googlecloudplatform",
+        "firebase"
+      ]
+    },
+    "high_impact_vulnerability_classes": [
+      {
+        "id": "GHA-01",
+        "name": "Pwn Request (pull_request_target + Untrusted Code Execution)",
+        "severity": "CRITICAL",
+        "description": "Workflow triggered by pull_request_target checks out untrusted PR head and runs scripts/build commands with write permissions or secrets."
+      },
+      {
+        "id": "GHA-02",
+        "name": "Script / Expression Injection in Shell",
+        "severity": "HIGH",
+        "description": "Untrusted GitHub event context (e.g. pull_request.title, issue.body, head_ref, comment.body) interpolated directly inside a run: block."
+      },
+      {
+        "id": "GHA-03",
+        "name": "Privileged workflow_run Artifact Poisoning",
+        "severity": "CRITICAL",
+        "description": "A privileged workflow_run workflow downloads artifacts uploaded by an unprivileged PR workflow and executes or sources them."
+      },
+      {
+        "id": "GHA-04",
+        "name": "Public Fork Execution on Self-Hosted Runners",
+        "severity": "CRITICAL",
+        "description": "Workflow triggered by pull_request runs on self-hosted runners without authorization gating."
+      }
+    ]
+  }
+}

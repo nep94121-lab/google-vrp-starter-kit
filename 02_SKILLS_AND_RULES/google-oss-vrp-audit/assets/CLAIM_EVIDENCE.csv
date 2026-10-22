@@ -1,0 +1,1 @@
+claim_id,report_id,claim_text,attacker_role,controlled_input,producer,consumer,gate_and_permissions,sink_and_asset,source_repo_commit_path_lines,runtime_api_url_utc,evidence_origin,claim_level,criterion,verdict,unknown_conditions,minimal_revision,closure_evidence

@@ -1,0 +1,38 @@
+{
+  "snapshot_date_local": "2026-10-22",
+  "scope": "Public official articles; summaries shipped, full responses not mirrored",
+  "sources": [
+    {
+      "id": "oss-rules",
+      "url": "https://bughunters.google.com/about/rules/open-source/google-open-source-software-vulnerability-reward-program-rules",
+      "api_url": "https://bughunters.google.com/rest/v1/articles/about/rules/open-source/google-open-source-software-vulnerability-reward-program-rules?language=en",
+      "retrieved_at_utc": "2026-10-22T08:51:45.742404+00:00",
+      "sha256": "f11b9df8eefe54c450a0af22ee84f88b8072be33e2e9c2acc263d794b17e8c79",
+      "bytes": 18541,
+      "title": "Google Open Source Software Vulnerability Reward Program Rules",
+      "public": true
+    },
+    {
+      "id": "oss-update-2026",
+      "url": "https://bughunters.google.com/blog/ossvrp-rule-updates-2026",
+      "api_url": "https://bughunters.google.com/rest/v1/articles/blog/ossvrp-rule-updates-2026?language=en",
+      "retrieved_at_utc": "2026-10-22T08:51:45.692309+00:00",
+      "sha256": "f857be2b9a69a1ee4e71815e5534ee3f05aa830046841767cff8d2a05b73104c",
+      "bytes": 6304,
+      "title": "Streamlining Google’s OSS VRP: Key Rule Updates",
+      "public": true,
+      "display_label": "OSS VRP rule updates 2026",
+      "title_note": "Title as returned by the API; raw response retained only in builder scratch."
+    },
+    {
+      "id": "quality-framework-2025",
+      "url": "https://bughunters.google.com/blog/level-up-your-reports-introducing-our-updated-report-quality-framework",
+      "api_url": "https://bughunters.google.com/rest/v1/articles/blog/level-up-your-reports-introducing-our-updated-report-quality-framework?language=en",
+      "retrieved_at_utc": "2026-10-22T08:51:45.785568+00:00",
+      "sha256": "3a04da8f7424aaba81ec9df5463c97f9e304959d4c78facf8107eeb567991edb",
+      "bytes": 6133,
+      "title": "Level Up Your Reports: Introducing Our Updated Report Quality Framework",
+      "public": true
+    }
+  ]
+}
