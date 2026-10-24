@@ -1,78 +1,72 @@
-# QUY TẮC VÀNG KHI ĐIỀN FORM NỘP BÀI TRÊN `bughunters.google.com/report`
+# QUY TẮC ĐIỀN BIỂU MẪU GOOGLE VRP (`https://bughunters.google.com/report`) — BẢN v3.0
 
-> Tài liệu này đúc kết các quy tắc thực chiến trên giao diện **Google Product Form** để không bị vướng bộ lọc cảnh báo tự động (`Out of Scope` / `Open redirect`) và không bị chạm giới hạn tốc độ (`Rate Limit`).
-
----
-
-## 1. Quy Tắc Số Lượng Nộp Cùng Lúc (Rate Limit 3 Bài `New`)
-
-- Với tài khoản mới trên Google Bug Hunters, hệ thống giới hạn tối đa **3 báo cáo đang ở trạng thái `New` (`🟨 SUBMITTED` / `outstanding bugs`) cùng một lúc** (hoặc giới hạn số bài gửi liên tiếp trong 1 giờ).
-- **Quy tắc bắt buộc:**
-  1. Chỉ nộp tối đa **3 bài chất lượng nhất** trong một đợt.
-  2. Nếu có bài bị Bot đóng `Duplicate` ngay sau 6–10 phút thì chỗ trống đó được trả lại, có thể nộp bù bài khác để duy trì đủ **3 bài đang ở trạng thái `New` (`🟨 SUBMITTED`)**.
-  3. **Khi đã có đủ 3 bài đang giữ trạng thái `New` quá 15 phút:** **DỪNG LẠI NGAY**, không nộp thêm bài thứ 4! Nếu cố nộp thêm khi đã có 3 bài `New`, hệ thống sẽ tự động đóng bài mới bằng trạng thái `WAI (Intended Behavior)` kèm thông báo:
-     > *"Whoa, slow down bughunting champion... Once your other outstanding bugs have been triaged or closed, you can submit additional reports."*
-  4. Đợi khi ít nhất 1 trong 3 bài `New` được kỹ sư Google duyệt xong (`Assigned` / `Accepted` hoặc `Closed`) mới nộp tiếp bài tiếp theo.
+## 1. Quy Tắc Sống Còn Về Giới Hạn Tốc Độ Nộp Bài (Tránh Bị Đóng `WAI` Do Rate Limit)
+- Với tài khoản mới chưa có lịch sử nhận thưởng, Google áp dụng giới hạn **tối đa 3 báo cáo đang mở (`New` + `Assigned` — `outstanding bugs`)** tại cùng một thời điểm.
+- Nếu đã có 3 bài ở trạng thái `New` hoặc `Assigned` (ví dụ: 1 bài `New` + 1 bài `Assigned` là 2 bài, vẫn còn 1 slot; nhưng nếu đủ 3 bài đang mở) mà cố nộp bài thứ 4 ngay lập tức, `Google Security Bot` (`sp...@google.com`, `component: 310544`) sẽ tự động đóng bài thứ 4 thành `WAI (Intended Behavior)` kèm thông báo:
+  > *"Whoa, slow down bughunting champion... Once your other outstanding bugs have been triaged or closed, you can submit additional reports."*
+- **Chiến lược đúng:**
+  1. Trước khi nộp bài mới, mở bảng `bughunters.google.com` đếm số bài đang có trạng thái **`New`** hoặc **`Assigned`**.
+  2. Chỉ nộp khi tổng số bài `New` + `Assigned` hiện tại **$\le 2$ bài**.
 
 ---
 
-## 2. Cấu Trúc 5 Mục Cố Định Trên Giao Diện `Google Product Form`
-
-Truy cập: `https://bughunters.google.com/report` $\rightarrow$ Nhấn nút **`REPORT SECURITY VULNERABILITY`**.
-
-### Mục 1: `About you`
-- Kiểm tra Tên và Email $\rightarrow$ Nhấn **`CONTINUE`**.
-
-### Mục 2: `Report description` (Giới hạn cứng 200 ký tự!)
-- Ô `Write here*` chỉ cho phép tối đa **200 ký tự** (`0 / 200`).
-- Luôn viết tiêu đề gọn trong khoảng **130 – 190 ký tự** theo mẫu:
-  `<org>/<repo>: <Cơ chế bị lỗi> in <tên_file> allows <hậu quả kỹ thuật trong CI/CD>`
-- Nhấn **`CONTINUE`**.
-
-### Mục 3: `Bug location`
-1. Phần **`Where do you want to report your vulnerability?`**:
-   - Tích chọn **nút tròn thứ 7 từ trên xuống dưới**:
-     ```text
-     OSS VRP – Report security issues affecting open source software stored in the public repositories of Google-owned GitHub organizations and selected repositories hosted on other platforms. See program rules
-     ```
-2. Phần **`Which URL (or repository) have you found the vulnerability in?`**:
-   - Dán đường dẫn repo GitHub: `https://github.com/<org>/<repo>`
-- Nhấn **`CONTINUE`**.
-
-### Mục 4: `The problem` (Gồm 2 ô văn bản lớn + 1 nút Upload file)
-1. **Ô lớn thứ 1 (`Please describe the technical details of the vulnerability`):**
-   - Dán phần `## Summary`, `## Affected Files`, `## Technical Details`, `## Verification Evidence`, và `## Suggested Fix`.
-2. **Ô lớn thứ 2 (`Impact analysis`):**
-   - **BẮT BUỘC xóa dòng chữ gợi ý mặc định** `[Please remove this hint and the guidance below before submitting your report.] Briefly explain who can exploit the vulnerability, and what they gain when doing so.` trước khi dán!
-   - Dán đúng 3 gạch đầu dòng chuẩn sau:
-     ```markdown
-     - **Who can exploit the vulnerability:** ...
-     - **Privileged CI/CD Token Scope Abused:** ...
-     - **What the attacker gains:** ...
-     ```
-3. **Phần `Upload file` (`SELECT FILE`):**
-   - Tải lên file `<tên-gói>.zip` (dưới 50MB).
-- Nhấn **`CONTINUE`**.
-
-### Mục 5: `The cause`
-1. **`Choose the type of vulnerability` (`Select vulnerability type*`):**
-   - Chọn **dòng thứ 5 từ trên xuống dưới**: `Permissions Bypass`
-   - Hoặc **dòng thứ 11 từ trên xuống dưới**: `Sandbox Escape` (nếu là lỗi thoát vùng confinement/sandbox)
-   - Hoặc **dòng thứ 26 cuối cùng**: `Other`
-2. **`Does anyone else know about this vulnerability?`:**
-   - Chọn **nút tròn thứ 1 từ trên xuống dưới**: `No, this vulnerability is private.`
-3. **`Do you plan to disclose this vulnerability publicly?`:**
-   - Chọn **dòng thứ 2 từ trên xuống dưới**: `No, I am only notifying Google`
-- Nhấn **`SUBMIT`**!
+## 2. Quy Tắc Tránh Bị Đóng `Infeasible` (Quy Định Mới Của Google OSS VRP Từ 01/10/2026)
+- Từ **01/10/2026**, chương trình **OSS VRP** của Google đã ngừng nhận các lỗi `Product Vulnerability` thông thường và **chỉ nhận các lỗi thuộc 2 nhóm sau**:
+  1. **Lỗi Chuỗi Cung Ứng (Supply Chain Compromise):** Phải chứng minh được khả năng sửa đổi code nhánh chính (`main`), chèn mã vào bản phát hành (Release / Package PyPI, npm, Docker), vượt cổng duyệt PR của maintainer để chạy trong ngữ cảnh có đặc quyền ghi repo hoặc lộ `secrets.*` của hệ thống CI/CD.
+  2. **Lỗi Tác Động Sang Google Cloud VRP (Được nâng lên `P2` và chuyển sang `component: 1609699 → 1610896`):** Khi lỗ hổng nằm trong các kho của `GoogleCloudPlatform/*` hoặc các workflow có xác thực với hạ tầng Google Cloud (`google-github-actions/auth`, `workload_identity_provider`, `GCP_SA_KEY`, Vertex AI, GKE, Cloud Run).
+- **Lưu ý khi viết mục `Impact analysis` ở Bước 4:**
+  - Phải nêu rõ ràng **tác động lên Supply Chain hoặc Google Cloud / CI Secrets** ngay dòng đầu tiên của ô `Impact analysis`, tránh để hệ thống tự động phân류 nhầm thành lỗi sản phẩm thông thường (`Infeasible`).
 
 ---
 
-## 3. Hai Bẫy Từ Khóa Của Bộ Lọc Tự Động Trước Khi Nộp (Pre-Submit Checker Traps)
+## 3. Quy Tắc Tránh Bị Nhắc *"Try the attack on github.com"* Khi Báo Cáo Lỗi Code/Tool CI
+- Khi lỗ hổng nằm trong một script Python/JS được gọi bởi GitHub Actions (như `tools.py`), nếu bạn chỉ mô tả hàm Python đó riêng lẻ, kỹ sư Triage có thể yêu cầu:
+  > *"Feel free to update this report with additional details and ensure it includes: - Try the attack on github.com"*
+- **Cách xử lý chuẩn & an toàn 100%:**
+  1. Luôn ghi rõ **Luồng Kích Hoạt Đầy Đủ Trên `github.com` (End-to-End GitHub Trigger Flow)** ngay ở đầu bài: Sự kiện GitHub nào (`issues`, `pull_request`, `workflow_run`, `release`) $\rightarrow$ kích hoạt file `.github/workflows/<tên_file>.yml` nào $\rightarrow$ truyền biến nào vào script $\rightarrow$ chạm tới hàm lỗi nào.
+  2. Để thuyết phục tuyệt đối 100%, hãy **Fork repo đó về tài khoản GitHub cá nhân của bạn (`github.com/<user-của-bạn>/<repo>`)**, chạy thử nghiệm workflow đó trên chính **repo fork của bạn** (tuyệt đối không chạy tấn công lên repo gốc của Google), và đính kèm link/log của lần chạy GitHub Actions trên fork vào báo cáo!
 
-Khi bạn nhấn `CONTINUE` ở Mục 4 hoặc `SUBMIT` ở Mục 5, trang web của Google có một bộ lọc từ khóa tự động. Hãy tránh 2 bẫy từ khóa sau để không bị hiện bảng cảnh báo:
+---
 
-1. **Bẫy 1 — Câu phủ định trong ô `Impact analysis` gây báo `Out of Scope`:**
-   - Không viết các câu phủ định kiểu *"This bug does not execute arbitrary code..."* hay *"does not bypass..."* trong ô `Impact analysis`, vì bộ lọc tự động sẽ bắt cụm từ *"does not..."* và bật popup hỏi `Is this vulnerability in scope?`.
-   - Thay vào đó, hãy nêu rõ các điều kiện tiên quyết dưới dạng khẳng định (`If <secret/condition> is configured...`, `When triggered via...`).
-2. **Bẫy 2 — Từ khóa `redirect` / `allow_redirects` gây báo nhầm lỗi Web `Open redirect`:**
-   - Khi mô tả các hàm HTTP Python/JS trong CI/CD (như `requests.head`), tránh dùng từ `redirect` hoặc `allow_redirects=True` vì bộ lọc từ khóa sẽ tưởng nhầm bạn đang báo lỗi chuyển hướng URL trên trình duyệt (`Open redirect`) và cảnh báo từ chối. Hãy dùng thuật ngữ `outbound HTTP request origin replacement` hoặc `host confinement`.
+## 4. Năm Bước Điền Form Chuẩn Không Bao Giờ Lỗi
+
+### Bước 1 (`About you`):
+- Giữ nguyên thông tin cá nhân đã đăng ký $\rightarrow$ Nhấn **`CONTINUE`**.
+
+### Bước 2 (`Report description`):
+- Ô `Write here*` giới hạn **tối đa 200 ký tự**.
+- Công thức tiêu đề chuẩn:
+  `<org>/<repo>: <Cơ chế bị thiếu/lỗi> in <tên_file> allows <hậu quả Supply Chain / Cloud CI cụ thể>`
+- Nhấn **`CONTINUE`**.
+
+### Bước 3 (`Bug location`):
+- Phần `Where do you want to report your vulnerability?`:
+  - Chọn **nút tròn thứ 7 từ trên xuống**:
+    `OSS VRP – Report security issues affecting open source software stored in the public repositories of Google-owned GitHub organizations and selected repositories hosted on other platforms. See program rules`
+    *(Nếu repo thuộc `GoogleCloudPlatform/*` và ảnh hưởng trực tiếp tới tài nguyên Cloud/GCP, kỹ sư Triage sẽ tự động chuyển bài của bạn sang hàng đợi `Google Cloud VRP` ở mức `P2`).*
+- Phần `Which URL (or repository) have you found the vulnerability in?`:
+  - Dán đúng URL của repo chính (`https://github.com/<org>/<repo>`) — không có dấu `/` ở cuối.
+- Nhấn **`CONTINUE`**.
+
+### Bước 4 (`The problem`):
+1. **Ô lớn 1 (`Please describe the technical details of the vulnerability`):**
+   - Dán phần **`## Summary` + `## Affected Files` + `## Technical Details` + `## Verification Evidence`** từ file `README.md`.
+2. **Ô lớn 2 (`Impact analysis`):**
+   - **QUAN TRỌNG:** Xóa toàn bộ đoạn chữ mẫu mặc định trong ô trước khi dán!
+   - Dán phần **`## Impact` + `## Suggested Fix`** từ file `README.md` (nêu rõ tác động Supply Chain / Cloud CI).
+3. **Phần `Upload file`:**
+   - Nhấn **`SELECT FILE`** và chọn đúng file **`<tên-gói>.zip`** đã qua kiểm định 100% PASS.
+4. **Xử lý hộp thoại cảnh báo (nếu hiện ra):**
+   - Nếu sau khi bấm `CONTINUE` mà trang web hiện hộp thoại hỏi xác nhận phạm vi (`Is this vulnerability in scope?` hoặc cảnh báo liên quan đến repo):
+   - Tích chọn **dòng tròn thứ 2** (`Something else` / `Continue submitting`) rồi nhấn **`SUBMIT` / `CONTINUE`** để đi tiếp sang Bước 5.
+
+### Bước 5 (`The cause`):
+1. `Choose the type of vulnerability` (`Select vulnerability type*`):
+   - Chọn `Permissions Bypass`, `Sandbox Escape`, hoặc `Command Injection` tùy đúng bản chất kỹ thuật của lỗ hổng.
+2. `Does anyone else know about this vulnerability?`:
+   - Tích chọn **dòng 1**: `No, this vulnerability is private.`
+3. `Do you plan to disclose this vulnerability publicly?`:
+   - Tích chọn **dòng 2**: `No, I am only notifying Google`
+4. `Do you want to donate your reward to charity?`:
+   - **Không tích** (bỏ trống).
+5. Nhấn nút **`SUBMIT`** và chờ 3–5 giây để trang chuyển về `https://bughunters.google.com/` kèm thông báo `Report submitted`.
